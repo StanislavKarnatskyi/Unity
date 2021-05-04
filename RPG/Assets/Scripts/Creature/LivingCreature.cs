@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -14,8 +15,10 @@ public abstract class  LivingCreature : MonoBehaviour
     public ServiceManager ServiceManager { get; private set; }
 	public LivingCreatureActionController ActionController { get; protected set; }
 
+	public Action DestroyHandler = delegate { };
+
 	// Start is called before the first frame update
-    protected virtual void Start()
+	protected virtual void Start()
     {
 	    CreatureRB = GetComponent<Rigidbody>();
 	    CreatureCollider = GetComponent<Collider>();
@@ -23,5 +26,10 @@ public abstract class  LivingCreature : MonoBehaviour
 	    CreatureAnimator = GetComponent<Animator>();
 	    ServiceManager = ServiceManager.Instance;
     }
+
+	private void OnDestroy()
+	{
+		DestroyHandler();
+	}
 
 }

@@ -61,10 +61,5 @@ public abstract class LivingCreatureActionController
 public enum ActionType
 {
     None,
-    Walk,
     Run,
-    Sprint,
-    Attack,
-    Hurt,
-    Death
 }
